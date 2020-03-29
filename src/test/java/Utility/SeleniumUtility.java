@@ -1,14 +1,11 @@
 package Utility;
 
-import cucumber.api.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.testng.ISuite;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
-import java.util.Random;
 
 public class SeleniumUtility {
 
@@ -22,14 +19,6 @@ public class SeleniumUtility {
     }
 
     private String projectPathLocation = System.getProperty("user.dir");
-
-    public int getARandomNumber(int limmin, int limmax){
-        return new Random().nextInt(limmax - limmin) + limmin;
-    }
-
-    public int getARandomNumber(int limmax) {
-        return getARandomNumber(0, limmax);
-    }
 
     public void pauseForSeconds(int seconds){
         try {

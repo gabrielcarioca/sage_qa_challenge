@@ -62,7 +62,7 @@ public class HomeScreen extends AbstractScreen {
                 By.xpath(deletePersonInRowLocator.replace("[ROW_NO]", String.valueOf(rowNumber)))
         ).click();
     }
-
+    // Getting person list from the UI
     public List<PersonData> getPersonList() {
         List<WebElement> personListElements = driver.findElements(By.xpath(personRowLocator.replace("[[ROW_NO]]", "")));
         List<PersonData> personList = new ArrayList<>();

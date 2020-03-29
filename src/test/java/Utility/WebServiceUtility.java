@@ -1,8 +1,6 @@
 package Utility;
 
 import io.restassured.response.Response;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,19 +32,6 @@ public class WebServiceUtility {
             i++;
         }
         return personList;
-    }
-
-    public ArrayList<String> getFilmsListFromResponseJson(Response response) {
-        JSONObject responseJson = new JSONObject(response.asString());
-        JSONArray array = responseJson.getJSONArray("results");
-
-        ArrayList<String> filmsList = new ArrayList<String>();
-
-        for (int i = 0; i < array.length(); i++) {
-            String filmName = array.getJSONObject(i).getString("title");
-            filmsList.add(filmName);
-        }
-        return filmsList;
     }
 
     public String createJsonForRandomPersonToAdd() {

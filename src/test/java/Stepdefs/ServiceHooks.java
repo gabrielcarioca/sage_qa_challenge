@@ -19,6 +19,8 @@ public class ServiceHooks{
         System.out.println("Initialize Test");
 
         UserUtility.getInstance().startANewFaker();
+
+        // No need to open the browser for webservice tests
         Collection<String> tags = scenario.getSourceTagNames();
         if (tags.contains("@WebServiceRequestFeature")) {
             return;

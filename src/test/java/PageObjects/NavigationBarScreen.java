@@ -6,10 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavigationBarScreen extends AbstractScreen {
 
-
-    @FindBy(xpath="//a[@href='/']")
-    private WebElement homeButton;
-
     @FindBy(xpath="//a[@href='/new-update']")
     private WebElement newPersonButton;
 
@@ -23,9 +19,5 @@ public class NavigationBarScreen extends AbstractScreen {
 
     public WebElement getNewPersonButton() {
         return newPersonButton;
-    }
-
-    public WebElement getHomeButton() {
-        return homeButton;
     }
 }

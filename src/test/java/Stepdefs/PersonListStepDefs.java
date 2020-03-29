@@ -3,6 +3,7 @@ package Stepdefs;
 import PageObjects.*;
 import Utility.*;
 import Utility.PersonData.PersonData;
+import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -26,8 +27,13 @@ public class PersonListStepDefs extends BaseStepDefs{
     List<PersonData> currentPersonList;
 
     @Before(order = 1)
-    public void beforeSuite() {
-        System.out.println("BeforeTest");
+    public void beforeSuite(Scenario scenario) {
+        // No need to initialize page objects for webservice requests tests
+        if (scenario.getSourceTagNames().contains("@WebServiceRequestFeature")) {
+            return;
+        }
+
+        System.out.println("Configuration for PersonListStepDefs");
 
         homeScreen = new HomeScreen(driver());
         navigationBarScreen = new NavigationBarScreen(driver());

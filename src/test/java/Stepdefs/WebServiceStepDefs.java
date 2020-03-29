@@ -4,14 +4,12 @@ package Stepdefs;
 import Utility.BaseStepDefs;
 import Utility.WebServiceUtility;
 import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 
@@ -37,7 +35,7 @@ public class WebServiceStepDefs extends BaseStepDefs {
 
     @Before(order = 1)
     public void beforeSuite() {
-        System.out.println("BeforeTest");
+        System.out.println("Configuration for WebServiceStepDefs");
 
         RestAssured.baseURI = baseURI;
     }
@@ -103,7 +101,7 @@ public class WebServiceStepDefs extends BaseStepDefs {
                 .body(bodyJson);
     }
 
-    @Then("^Then A response for invalid email should be received$")
+    @Then("^A response for invalid email should be received$")
     public void validateResponseForInvalidEmail() {
         lastRequestResponse.then().statusCode(400);
         String responseMessage = lastRequestResponse.jsonPath().get("message");
@@ -120,7 +118,7 @@ public class WebServiceStepDefs extends BaseStepDefs {
                 .body(bodyJson);
     }
 
-    @Then("^Then A response for invalid document should be received$")
+    @Then("^A response for invalid document should be received$")
     public void validateResponseForInvalidDocument() {
         lastRequestResponse.then().statusCode(400);
         String responseMessage = lastRequestResponse.jsonPath().get("message");
