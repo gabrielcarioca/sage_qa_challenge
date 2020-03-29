@@ -3,21 +3,23 @@ package Utility;
 import io.restassured.response.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import io.restassured.RestAssured;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApiUtility {
+public class WebServiceUtility {
 
-    private static ApiUtility singleInstance;
+    private static WebServiceUtility singleInstance;
     private String preFilledAddress =  "\"address\":{\"id\":\"\",\"zipcode\":\"13010040\"" +
             ",\"state\":\"SP\",\"city\":\"Campinas\",\"neighborhood\":\"Centro\"" +
             ",\"address\":\"Rua Ferreira Penteado\",\"number\":\"178\",\"complement\":\"\"}";
+    private String emptyAddress = "\"address\":{\"id\":\"\",\"zipcode\":\"\"" +
+            ",\"state\":\"\",\"city\":\"\",\"neighborhood\":\"\",\"address\":\"\"" +
+            ",\"number\":\"\",\"complement\":\"\"}";
 
-    public static ApiUtility getInstance(){
+    public static WebServiceUtility getInstance(){
         if(singleInstance == null){
-            singleInstance = new ApiUtility();
+            singleInstance = new WebServiceUtility();
         }
         return singleInstance;
     }
@@ -61,5 +63,41 @@ public class ApiUtility {
                 "," + preFilledAddress +
                 "}";
         return jsonForPerson;
+    }
+
+    public String createJsonForRandomUserWithMissingField(String missingField) {
+        String completeJson = createJsonForRandomPersonToAdd();
+        if (missingField == "address") {
+            String jsonWIthoutField = completeJson.replaceAll(
+                    "\"" + missingField + "\":{.*}}",
+                    "\"" + missingField + "\":" + emptyAddress + "}"
+            );
+            return jsonWIthoutField;
+        }
+        else {
+            String jsonWIthoutField = completeJson.replaceAll(
+                    "\"" + missingField + "\":\"([^\\\"])*\"",
+                    "\"" + missingField + "\":\"\""
+            );
+            return jsonWIthoutField;
+        }
+    }
+
+    public String createJsonForRandomUserWithInvalidEmail() {
+        String completeJson = createJsonForRandomPersonToAdd();
+        String jsonWIthoutField = completeJson.replaceAll(
+                "\"email\":\"([^\\\"])*\"",
+                "\"email\":\"invalidEmail\""
+        );
+        return jsonWIthoutField;
+    }
+
+    public String createJsonForRandomUserWithInvaliDocument() {
+        String completeJson = createJsonForRandomPersonToAdd();
+        String jsonWIthoutField = completeJson.replaceAll(
+                "\"document\":\"([^\\\"])*\"",
+                "\"document\":\"invalidDocument\""
+        );
+        return jsonWIthoutField;
     }
 }

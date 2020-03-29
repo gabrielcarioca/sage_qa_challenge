@@ -6,7 +6,7 @@ import Listeners.*;
 
 @CucumberOptions(
         features = "src/test/resources/features"
-        ,tags = {"@EditPersonFeature"}
+        ,tags = {"@WebServiceRequestFeature"}
         ,glue={"Stepdefs"}
         ,plugin = { "pretty", "html:results" }
         ,monochrome = true)

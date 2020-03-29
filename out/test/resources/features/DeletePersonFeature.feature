@@ -5,7 +5,7 @@ Background: Start with at least one person in the list
     Given There is at least on person in list
     And User goes to home page
 
-@CancelDeletingPersonFeature
+@DeletePersonFeature @CancelDeletingPersonFeature
 Scenario: User cancel deleting person
     When User clicks in the delete button for first person in the list
     Then User can see a modal to confirm if he/she wants to delete the person

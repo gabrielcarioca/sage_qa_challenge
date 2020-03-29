@@ -17,13 +17,14 @@ public class ServiceHooks{
     public void initializeTest(Scenario scenario) throws MalformedURLException {
         // Code to setup initial configurations
         System.out.println("Initialize Test");
+
+        UserUtility.getInstance().startANewFaker();
         Collection<String> tags = scenario.getSourceTagNames();
-        if (tags.contains("@GetFilmsList")) {
+        if (tags.contains("@WebServiceRequestFeature")) {
             return;
         }
         // Creating the chrome driver
         DriverUtility.getInstance().startANewChromeDriver();
-        UserUtility.getInstance().startANewFaker();
     }
 
     @After(order = 0)
